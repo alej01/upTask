@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1= nombrePagina
+            p Ingrese su e-mail para reestablecer su password
+            if locals.mensajes
+                .caja
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alert(class=`${categoria} center`)=error
+            form.caja-login(method="POST" action="/reestablecer")
+                .campo  
+                    label(for="email") E-mail
+                    input(type="email" id="email" name="email" required)
+                .campo.enviar
+                    input.boton(type="submit" value="Reestablecer password")
+                a(href="/iniciarSesion") Volver a iniciar sesion

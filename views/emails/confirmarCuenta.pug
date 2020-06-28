@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        style
+            include ./email.css
+        
+    body
+        h2 Confirmar cuenta en upTask
+        p Has solicitado la creacion de un usuario en upTask, haz click en el siguiente enlace para confirmar la cuenta
+        a(href=`${reseturl}`) Confirmar cuenta
+        p Si no puedes acceder al enlace, por favor visita el siguiente link: #{reseturl}

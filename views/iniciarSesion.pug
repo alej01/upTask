@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1 Iniciar Sesión en upTask
+            if locals.mensajes
+                .caja
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alert(class=`${categoria} center`)=error
+
+            form#formulario.caja.caja-login(method="POST" action="/iniciarSesion")
+                .campo  
+                    label(for="email") E-mail
+                    input(type="email" id="email" name="email" value= email required)
+                .campo
+                    label(for="password") Password
+                    input(type="password" id="password" name="password" value= password required)
+                .campo.enviar
+                    input.boton(type="submit" value="Iniciar Sesión")
+                .campo.acciones
+                    a(href="/crearCuenta") Crear cuenta 
+                    a(href="/reestablecer") Olvide mi password
+        script(src="/dist/bundle.js")

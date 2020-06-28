@@ -1,0 +1,47 @@
+extends layout
+
+block contenido
+    .contenido-principal
+        h1 #{nombrePagina }
+        if estado != null
+            .container
+                if estado
+                    .alert.alert-primary.center= 'Registrado Correctamente'
+                else
+                    .alert.alert-danger.center= 'Error registrando' 
+        .container
+            .row.justify-content-around
+                .col-10      
+                    form.agregar-proyecto(action=`/proyectos/${proyecto ? proyecto.id  : ""}` method="POST"  style='width:100%; margin:0; max-width: 100%;' )
+                        .campo
+                            label(for="tarea") Tarea: 
+                            input.nombre-tarea(type="text" name="tarea" placeholder="Nombre de la tarea")
+                        .campo.enviar
+                            input.boton.nueva-tarea(type="submit" value="Agregar")
+        br
+        h1 Tareas - #{nombrePagina}
+        .avance
+            h2 Avance del proyecto
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+        .listado-pendientes
+            ul
+                if(tareasP.length)
+                    each tar in tareasP
+                        li.tarea
+                            p= tar.tarea
+                            .acciones
+                                if tar.estado  
+                                    i(data-tarea=`${tar.id}`).far.fa-check-circle.completo
+                                else
+                                    i(data-tarea=`${tar.id}`).far.fa-check-circle
+                                i(data-tarea=`${tar.id}` ).fas.fa-trash
+                else
+                    h1 No hay tareas 
+        
+
+        .container
+            .row
+                a(href=`/editar/${proyecto.id}` class="boton col-12 col-md-3" style="height: 0; margin-top:16px; text-decoration:none; color: #455A64") Editar Proyecto
+                button#eliminarProyecto(data-proyecto-url=proyecto.url class="boton eliminar col-12 col-md-3") Eliminar Proyecto
+                

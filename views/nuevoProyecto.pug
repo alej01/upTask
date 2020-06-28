@@ -1,0 +1,20 @@
+extends layout
+
+include mixins/proyectoInfo
+
+
+block contenido
+    .contenido-principal
+        h1 #{nombrePagina} #{proyecto? ' - '+proyecto.nombre : ""}
+        if errores    
+            each error in errores
+                .container
+                    .alert.alert-danger.center= error.texto
+        if snOk
+            .container
+                    .alert.alert-primary.center= 'Registrado Correctamente'
+
+        +proyectoInfo()        
+            
+
+        
