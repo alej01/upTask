@@ -9,21 +9,30 @@ const passport = require('./config/passport');
 
 // Coneccion a DB
 
-const db = require('./config/db');
+// const db = require('./config/db');
 
-// importar modelo
+// // importar modelo
 
-require('./model/Proyectos');
-require('./model/Tareas');
-require('./model/Usuarios');
+// require('./model/Proyectos');
+// require('./model/Tareas');
+// require('./model/Usuarios');
 
-db.sync()
-    .then(() => console.log('Coneccion a la base de datos exitosa'))
-    .catch(error => console.log('Error conectando a la base de datos'));
+// db.sync()
+//     .then(() => console.log('Coneccion a la base de datos exitosa'))
+//     .catch(error => console.log('Error conectando a la base de datos'));
 
 
 //Creando app de express
 const app = express();
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 
 //cargar archivos estaticos
 app.use(express.static('public'));

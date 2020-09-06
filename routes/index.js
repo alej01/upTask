@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const router = express.Router();
 
 const { body } = require('express-validator/check');
@@ -63,6 +64,15 @@ module.exports = function(){
     router.get('/reestablecer/:token', authController.validarToken)
     router.post('/reestablecer/:token', authController.resetPassword)
     router.get('/confirmarCuenta/:email', usuariosController.confirmarCuenta)
+
+
+    router.post('/recibirRespuesta' , (req, res) => {
+        fs.writeFile(`${__dirname}/res.txt`, new Date()+'--Recibimos la respuesta si', function(err) {
+            if(err) return console.error(err);
+            res.send("NOOK")  
+          });
+        res.send("OK")  
+    })
 
     return router;
     
