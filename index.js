@@ -9,17 +9,17 @@ const passport = require('./config/passport');
 
 // Coneccion a DB
 
-// const db = require('./config/db');
+const db = require('./config/db');
 
 // // importar modelo
 
-// require('./model/Proyectos');
-// require('./model/Tareas');
-// require('./model/Usuarios');
+require('./model/Proyectos');
+require('./model/Tareas');
+require('./model/Usuarios');
 
-// db.sync()
-//     .then(() => console.log('Coneccion a la base de datos exitosa'))
-//     .catch(error => console.log('Error conectando a la base de datos'));
+db.sync()
+    .then(() => console.log('Coneccion a la base de datos exitosa'))
+    .catch(error => console.log('Error conectando a la base de datos'));
 
 
 //Creando app de express
@@ -32,6 +32,8 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+
+
 
 
 //cargar archivos estaticos

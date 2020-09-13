@@ -65,15 +65,6 @@ module.exports = function(){
     router.post('/reestablecer/:token', authController.resetPassword)
     router.get('/confirmarCuenta/:email', usuariosController.confirmarCuenta)
 
-
-    router.post('/recibirRespuesta' , (req, res) => {
-        fs.writeFile(`${__dirname}/res.txt`, new Date()+'--Recibimos la respuesta si', function(err) {
-            if(err) return console.error(err);
-            res.send("NOOK")  
-          });
-        res.send("OK")  
-    })
-
     return router;
     
 }
