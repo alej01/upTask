@@ -31,7 +31,7 @@
     "request-promise": "^4.2.4",
     "s": "^0.1.1",
     "s-": "0.0.1",
-    "sequelize": "^5.12.2",
+    "sequelize": "^5.15.1",
     "shortid": "^2.2.14",
     "slug": "^1.1.0",
     "sweetalert2": "^8.14.0"
